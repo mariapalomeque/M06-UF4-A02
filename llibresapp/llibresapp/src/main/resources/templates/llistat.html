@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ca" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llistat de llibres</title>
+</head>
+<body>
+
+    <center>
+        <h1>Llista de llibres</h1>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>ISBN</th>
+                    <th>Títol</th>
+                    <th>Editorial</th>
+                    <th>Data de publicació</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:if="${libros.empty}">
+                    <td colspan="5">No hi ha llibres disponibles</td>
+                </tr>
+                <tr th:each="libro : ${libros}">
+                    <td th:text="${libro.idLibro}">1</td>
+                    <td th:text="${libro.isbn}">000000</td>
+                    <td th:text="${libro.titulo}">Títol exemple</td>
+                    <td th:text="${libro.editorial}">Editorial exemple</td>
+                    <td th:text="${libro.fechaPublicacion}">2024-01-01</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p><a href="/libros/index">Tornar enrere</a></p>
+    </center>
+</body>
+</html>

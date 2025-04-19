@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ca" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cercar llibre per ID</title>
+</head>
+<body>
+    <center>
+        <h1>Cerca un llibre pel seu ID</h1>
+
+        <form th:action="@{/libros/cercaid}" method="get">
+            <label for="id">Introdueix l'ID del llibre:</label>
+            <input type="number" id="id" name="id" min="1" required>
+            <button type="submit">Cercar</button>
+        </form>
+
+        <div th:if="${llibre != null}">
+            <h2>Llibre trobat</h2>
+            <table border="1">
+                <tr><th>ID</th><td th:text="${llibre.idLibro}">1</td></tr>
+                <tr><th>ISBN</th><td th:text="${llibre.isbn}">000000</td></tr>
+                <tr><th>Títol</th><td th:text="${llibre.titulo}">Títol exemple</td></tr>
+                <tr><th>Autor</th><td th:text="${llibre.autor}">Autor exemple</td></tr>
+                <tr><th>Editorial</th><td th:text="${llibre.editorial}">Editorial exemple</td></tr>
+                <tr><th>Data de publicació</th><td th:text="${llibre.fechaPublicacion}">2024-01-01</td></tr>
+                <tr><th>Temàtica</th><td th:text="${llibre.tematica}">Ficció</td></tr>
+            </table>
+        </div>
+
+        <div th:if="${error != null}">
+            <p style="color:red;" th:text="${error}">No s'ha trobat cap llibre amb aquest ID.</p>
+        </div>
+
+        <p><a href="/libros/index">Tornar enrere</a></p>
+    </center>
+</body>
+</html>
